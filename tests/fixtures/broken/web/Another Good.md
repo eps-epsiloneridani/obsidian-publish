@@ -1,0 +1,3 @@
+# Another Good
+
+[[Good Note]]

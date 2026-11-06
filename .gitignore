@@ -1,0 +1,21 @@
+# build artifacts
+out/
+out.staging/
+out.old/
+build/
+.quartz/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+# secrets / local config
+.env
+config.env
+secrets.env
+publish-allowlist.local.yaml
+# generated systemd units (setup.sh writes the concrete .path unit here)
+dist/generated/
+# temp
+*.tmp
+*.swp
+.local/

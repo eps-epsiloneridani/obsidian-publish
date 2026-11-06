@@ -1,0 +1,300 @@
+/* Minimal, dependency-free stylesheet for the static site.
+ *
+ * Dark-on-light, system font stack only (no web fonts, no CDN). Single column
+ * that reads cleanly on a narrow (mobile) viewport; no framework.
+ */
+
+:root {
+  --bg: #fdfdfc;
+  --fg: #1f2328;
+  --muted: #6a737d;
+  --border: #e1e4e8;
+  --accent: #0969da;
+  --code-bg: #f6f8fa;
+  --danger: #d1242f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---- header / search ---- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+.site-nav {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-title {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.nav-graph {
+  white-space: nowrap;
+}
+
+.search {
+  position: relative;
+  margin-left: auto;
+  flex: 1;
+  max-width: 18rem;
+}
+
+#search-input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0.25rem 0 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.search-results[hidden] {
+  display: none;
+}
+
+.search-results a {
+  display: block;
+  padding: 0.4rem 0.6rem;
+  color: var(--fg);
+}
+
+.search-results a:hover {
+  background: var(--code-bg);
+  text-decoration: none;
+}
+
+.search-empty {
+  padding: 0.4rem 0.6rem;
+  color: var(--muted);
+}
+
+/* ---- layout (sidebar + content) ---- */
+
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 0 0 14rem;
+  position: sticky;
+  top: 4rem;
+  padding-top: 1.5rem;
+}
+
+.note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.note-list li {
+  margin: 0.25rem 0;
+}
+
+.page {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---- content ---- */
+
+.content {
+  padding-top: 1.5rem;
+}
+
+.content h1 {
+  font-size: 1.9rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.content h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 4px solid var(--border);
+  color: var(--muted);
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.broken-link {
+  color: var(--danger);
+  text-decoration: line-through;
+}
+
+.embed {
+  font-style: italic;
+}
+
+/* ---- backlinks ---- */
+
+.backlinks {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.backlinks h2 {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+}
+
+.backlinks ul {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.backlinks-empty {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---- graph ---- */
+
+.graph-wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.graph-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.graph-edge {
+  stroke: #c9d1d9;
+  stroke-width: 1;
+}
+
+.graph-node-circle {
+  fill: var(--accent);
+  opacity: 0.85;
+}
+
+.graph-node-label {
+  font-size: 12px;
+  fill: var(--fg);
+}
+
+/* ---- responsive (mobile) ---- */
+
+@media (max-width: 600px) {
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .search {
+    max-width: 100%;
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    flex: none;
+    width: 100%;
+    padding-top: 0.5rem;
+  }
+
+  .content h1 {
+    font-size: 1.6rem;
+  }
+}

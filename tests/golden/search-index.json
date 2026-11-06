@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Home",
+    "path": "index.html",
+    "text": "# Home\n\nWelcome to the synthetic fixture vault. This mirrors the conventions of the\nreal vault without containing any of its content.\n\n## Quick links\n\n- [[Project Phoenix]]\n- [[Standup - 2026-11-06]]\n- [[Old Notes]]\n- [[README (draft)]]\n\n## Highlights\n\nSome **bold** text and some *italic* text, plus `inline code`.\n\n> A blockquote with *emphasis* inside.\n\nA [real external link](https://example.com) for good measure.\n\n![[Project Phoenix]]\n\nHere is a fenced block:\n\n```python\nprint(\"hello\")\n```\n"
+  },
+  {
+    "title": "Contact - John's list",
+    "path": "web/Contact%20-%20John%27s%20list.html",
+    "text": "# Contact - John's list\n\nFilename contains a hyphen, spaces and an apostrophe.\n\n- [[Home]]\n- [[Colour Palette]]\n"
+  },
+  {
+    "title": "Ideas & Ramblings",
+    "path": "web/Ideas%20%26%20Ramblings.html",
+    "text": "# Ideas & Ramblings\n\nAn ampersand in the filename.\n\n1. First ordered item\n2. Second ordered item\n   1. nested ordered item\n   2. another nested item\n3. Third item\n\n[[Project Phoenix|the phoenix project]] uses an alias.\n\nThe quick brown fox is a normal sentence with snake_case_left_alone.\n"
+  },
+  {
+    "title": "Orphan Note",
+    "path": "web/Orphan%20Note.html",
+    "text": "# Orphan Note\n\nThis note is intentionally isolated: nothing links to it and it links to\nnothing. It exists to exercise the zero-backlinks case (the backlinks panel\nshould report that no notes link here) and to appear as a lone node in the\ngraph.\n"
+  },
+  {
+    "title": "Project Phoenix",
+    "path": "web/Project%20Phoenix.html",
+    "text": "# Project Phoenix\n\nA note whose filename has a space.\n\nLinks back home: [[Home]].\n\nSee also [[Ideas & Ramblings]] and [[Meeting Notes#Decisions]].\n"
+  },
+  {
+    "title": "README (draft)",
+    "path": "web/README%20%28draft%29.html",
+    "text": "# README (draft)\n\nFilename contains parentheses.\n\n[[Home]]\n"
+  },
+  {
+    "title": "Interview Preparation",
+    "path": "web/archive/Interview%20prep.html",
+    "text": "\n# Interview Preparation\n\nThis note has frontmatter.\n\n[[Home]]\n"
+  },
+  {
+    "title": "Old Notes",
+    "path": "web/archive/Old%20Notes.html",
+    "text": "# Old Notes\n\nFrom the archive folder.\n\n[[Home]]\n"
+  },
+  {
+    "title": "Colour Palette",
+    "path": "web/clippings/Colour%20Palette.html",
+    "text": "\n# Colour Palette\n\nFrontmatter note number two.\n\n[[Ideas & Ramblings]]\n"
+  },
+  {
+    "title": "Meeting Notes",
+    "path": "web/notes/Meeting%20Notes.html",
+    "text": "# Meeting Notes\n\n## Decisions\n\nDecision recorded here.\n\n[[Home]] and [[The Future]].\n"
+  },
+  {
+    "title": "Standup - 2026-11-06",
+    "path": "web/notes/Standup%20-%202026-11-06.html",
+    "text": "# Standup - 2026-11-06\n\nIn a subfolder, filename has hyphens.\n\n- [[Project Phoenix]]\n- [[Old Notes]]\n"
+  },
+  {
+    "title": "The Future",
+    "path": "web/some%20day/The%20Future.html",
+    "text": "# The Future\n\nIn the \"some day\" folder.\n\n[[Meeting Notes]]\n"
+  }
+]

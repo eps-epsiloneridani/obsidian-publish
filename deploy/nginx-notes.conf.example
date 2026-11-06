@@ -1,0 +1,45 @@
+# Generic static-file nginx config for the notes site.
+# Copy to /etc/nginx/sites-available/notes and symlink into sites-enabled,
+# then `nginx -t && systemctl reload nginx`.
+#
+# Replace the placeholders:
+#   <SERVER_NAME>  your public hostname(s), e.g. `server_name notes.example.com;`
+#   <DOCROOT>      the directory deploy.sh rsyncs into (matches NOTES_DOCROOT),
+#                  e.g. `root /var/www/notes;`
+#
+# Static files only: no PHP/FCGI, no autoindex, dotfiles denied, asset caching.
+# TLS is expected to terminate upstream (a reverse proxy / edge); this block
+# serves plain HTTP and does not reference any specific domain.
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name <SERVER_NAME> _;
+
+    root <DOCROOT>;
+    index index.html;
+
+    server_tokens off;
+
+    # No directory listings.
+    autoindex off;
+
+    # Deny dotfiles and dot-directories (e.g. .git, .svn, stray hidden files).
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    # Long-lived immutable cache for static assets.
+    location ~* \.(?:css|js|mjs|svg|png|jpe?g|gif|webp|avif|ico|woff2?|ttf|otf|map)$ {
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000, immutable";
+        access_log off;
+        try_files $uri =404;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

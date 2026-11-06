@@ -1,0 +1,33 @@
+# Instant republish trigger (TEMPLATE — install via setup.sh).
+#
+# Watches the vault's publish scope (@VAULT_WEB@, substituted from config.env's
+# NOTES_VAULT + NOTES_PUBLISH_SCOPE) and activates notes-publish.service (same
+# basename, .service suffix) on every change.
+#
+# systemd.path has no EnvironmentFile= directive and PathModified= /
+# DirectoryNotEmpty= must be literal paths, so this unit is generated from
+# config.env by setup.sh before install. Run `./setup.sh` and copy the commands
+# it prints (or edit @VAULT_WEB@ by hand).
+#
+# A USER unit -- never enabled here; setup.sh prints the enable commands.
+
+[Unit]
+Description=Watch @VAULT_WEB@ for changes
+# Rapid saves fire many triggers; the publisher is flock-guarded, so allow them.
+StartLimitIntervalSec=0
+
+[Path]
+# Top-level scope directory: fires when a note is created, deleted or renamed
+# directly in it. Obsidian saves atomically (temp file + rename), which this
+# catches. PathModified also fires when the FIRST note is dropped into an empty
+# scope (creating a file modifies the directory), so no DirectoryNotEmpty= is
+# needed -- and DirectoryNotEmpty= is deliberately avoided: it re-triggers in a
+# tight loop for as long as the scope stays non-empty.
+PathModified=@VAULT_WEB@
+
+# systemd.path does NOT recurse, so each subfolder below the scope needs its
+# own PathModified= line added when it is created, e.g.:
+#   PathModified=@VAULT_WEB@/notes
+
+[Install]
+WantedBy=default.target

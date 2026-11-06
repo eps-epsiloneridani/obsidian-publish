@@ -1,0 +1,15 @@
+# Deploy user's ~/.ssh/authorized_keys entry — TEMPLATE (do not use as-is).
+# Replace each placeholder, then install this single line in the deploy user's
+# ~/.ssh/authorized_keys on the target host:
+#
+#   <BUILD_HOST_IP>   the source (build) machine's address that the deploy key
+#                     connects FROM (pin it for least privilege)
+#   <DOCROOT>         the target docroot (matches NOTES_DOCROOT), e.g. /var/www/notes
+#   <SSH_PUBLIC_KEY>  the contents of the deploy public key (deploy_key.pub)
+#   <COMMENT>         any label, e.g. notes-deploy@<your-host>
+#
+# Least-privilege:
+#   restrict  disables pty, port/agent/X11 forwarding.
+#   from=     pins the source address.
+#   command=  forces rrsync against the docroot only (no shell access).
+restrict,from="<BUILD_HOST_IP>",command="/usr/bin/rrsync <DOCROOT>/" ssh-ed25519 <SSH_PUBLIC_KEY> <COMMENT>
